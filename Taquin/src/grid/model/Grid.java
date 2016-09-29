@@ -53,6 +53,7 @@ public class Grid {
 	}
 	
 	public Case getCaseByKey(int k){
+		System.out.println("getCaseByKey method...(Key: " + k + ")");
 		List<Case> l = grid.get(0);
 		return this.getCaseByKey(k, l, 0);
 	}
@@ -72,22 +73,13 @@ public class Grid {
 	}
 	
 	public Case getCaseByPos(Position k){
+		System.out.println("getCaseByPos method...(Position: " + k + ")");
 		List<Case> l = grid.get(0);
 		return this.getCaseByPos(k, l, 0);
 	}
 	
 	public Case getCaseByPos(Position k, List<Case> l, int line){
-		for(Case c : l){
-			if(c.getPos()==k){
-				return c;
-			}
-		}
-		if(line<grid.size()){
-			return this.getCaseByPos(k, grid.get(line+1), line+1);
-		}
-		else{
-			return null;
-		}
+		return grid.get(k.getX()).get(k.getY());
 	}
 
 }
