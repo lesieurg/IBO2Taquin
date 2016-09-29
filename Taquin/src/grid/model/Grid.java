@@ -58,23 +58,17 @@ public class Grid {
 	}
 	
 	public Case getCaseByKey(int k, List<Case> l, int line){
-		Case ret = null;
-		boolean found = false;
-		if(line<grid.size()){
-			l = grid.get(line);
-			for (Case c : l){
-				if(c.getKey()==k){
-					found = true;
-					ret = c;
-				}
+		for(Case c : l){
+			if(c.getKey()==k){
+				return c;
 			}
-			if (!found){
-				ret = this.getCaseByKey(k, l, line+1);
-			}
-		}else{
-			ret = null;
 		}
-		return ret;
+		if(line<grid.size()){
+			return this.getCaseByKey(k, grid.get(line+1), line+1);
+		}
+		else{
+			return null;
+		}
 	}
 	
 	public Case getCaseByPos(Position k){
@@ -83,23 +77,17 @@ public class Grid {
 	}
 	
 	public Case getCaseByPos(Position k, List<Case> l, int line){
-		Case ret = null;
-		boolean found = false;
-		if(line<grid.size()){
-			l = grid.get(line);
-			for (Case c : l){
-				if(c.getPos()==k){
-					found = true;
-					ret = c;
-				}
+		for(Case c : l){
+			if(c.getPos()==k){
+				return c;
 			}
-			if (!found){
-				ret = this.getCaseByPos(k, l, line+1);
-			}
-		}else{
-			ret = null;
 		}
-		return ret;
+		if(line<grid.size()){
+			return this.getCaseByPos(k, grid.get(line+1), line+1);
+		}
+		else{
+			return null;
+		}
 	}
 
 }

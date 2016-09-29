@@ -41,7 +41,9 @@ public class Case{
 		int X = this.getPos().getX();
 		int Y = this.getPos().getY();
 		System.out.println("isMovable step2");
-		Case topLeft = g.getCaseByPos(new Position(X-1,Y-1));
+		Position topLeftPos = new Position(X-1,Y-1);
+		
+		Case topLeft = g.getCaseByPos(topLeftPos);
 		System.out.println(topLeft);
 		Case top = g.getCaseByPos(new Position(X-1,Y));
 		Case topRight = g.getCaseByPos(new Position(X-1,Y+1));

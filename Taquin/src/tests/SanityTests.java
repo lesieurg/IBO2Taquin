@@ -8,20 +8,17 @@ import grid.model.Grid;
 public class SanityTests {
 
 	@Test
-	public void test() {
+	public void test1_NewGrid_VerifyPositions() {
 		Grid g = new Grid();
 		System.out.println(g);
 		for (int i=0; i<16; i++){
 			System.out.println("Search for value: " + String.valueOf(i));
 			System.out.println(g.getCaseByKey(i).getPos());
-//			if(g.getCaseByKey(i).isMovable()){
-//				System.out.println("Case is MOVABLE");
-//			}
 		}
 	}
 	
 	@Test
-	public void test2(){
+	public void test2_VerifForCaseIsMovable(){
 		Grid g = new Grid();
 		System.out.println(g);
 		Case c = g.getCaseByKey(5);
