@@ -76,5 +76,30 @@ public class Grid {
 		}
 		return ret;
 	}
+	
+	public Case getCaseByPos(Position k){
+		List<Case> l = grid.get(0);
+		return this.getCaseByPos(k, l, 0);
+	}
+	
+	public Case getCaseByPos(Position k, List<Case> l, int line){
+		Case ret = null;
+		boolean found = false;
+		if(line<grid.size()){
+			l = grid.get(line);
+			for (Case c : l){
+				if(c.getPos()==k){
+					found = true;
+					ret = c;
+				}
+			}
+			if (!found){
+				ret = this.getCaseByPos(k, l, line+1);
+			}
+		}else{
+			ret = null;
+		}
+		return ret;
+	}
 
 }
