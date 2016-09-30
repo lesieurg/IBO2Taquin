@@ -1,9 +1,18 @@
 package grid.model;
 
+import java.util.logging.Logger;
+
 public class Position {
+	
+	private static final Logger LOGGER = Logger.getLogger(Case.class.getName());
 	
 	private int x;
 	private int y;
+	
+	public Position(){
+		x=0;
+		y=0;
+	}
 
 	public Position(int a, int c) {
 		x=a;
@@ -27,48 +36,32 @@ public class Position {
 	}
 	
 	public Position getTop(){
+		LOGGER.info("call to Position.getTop()");
 		return (new Position(x-1,y));
 	}
 	
-	public Position getTopRight(){
-		return (new Position(x-1,y+1));
-	}
-	
 	public Position getRight(){
+		LOGGER.info("call to Position.getRight()");
 		return (new Position(x,y+1));
 	}
 	
-	public Position getBottomRight(){
-		return (new Position(x+1,y+1));
-	}
-	
 	public Position getBottom(){
+		LOGGER.info("call to Position.getBottom()");
 		return new Position(x+1,y);
 	}
 	
-	public Position getBottomLeft(){
-		return new Position(x+1,y-1);
-	}
-	
 	public Position getLeft(){
+		LOGGER.info("call to Position.getLeft()");
 		return new Position(x,y-1);
 	}
 	
-	public Position getTopLeft(){
-		return new Position(x-1,y-1);
-	}
-	
 	public String toString(){
-		return "POSITION: line: " + String.valueOf(x) + " colunm: " + String.valueOf(y);
+		return "POSITION: line: " + String.valueOf(x+1) + " colunm: " + String.valueOf(y+1) + "\n";
 	}
 	
-	public boolean equals(Position other){
-		if(other instanceof Position){
-			return (other.getX()==x)&&(other.getY()==y);
-		}
-		else{
-			return false;
-		}
+	public void equals(Position other){
+		x=other.getX();
+		y=other.getY();
 	}
 
 }

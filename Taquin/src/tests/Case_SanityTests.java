@@ -5,20 +5,35 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Random;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import grid.model.Case;
+import grid.model.Grid;
+import grid.model.Position;
 
 /**
  * @author adrianpothuaud
  *
  */
 public class Case_SanityTests {
+	
+	static int key;
+	static Grid g;
+	static Case c;
+	static Position p;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		key = new Random().nextInt() % 16;
+		g = new Grid();
+		c = g.getCaseByKey(key);
+		p = c.getPos();
 	}
 
 	/**
@@ -101,12 +116,5 @@ public class Case_SanityTests {
 		fail("Not yet implemented"); // TODO
 	}
 
-	/**
-	 * Test method for {@link grid.model.Case#permute(grid.model.Case)}.
-	 */
-	@Test
-	public final void testPermute() {
-		fail("Not yet implemented"); // TODO
-	}
-
+	
 }

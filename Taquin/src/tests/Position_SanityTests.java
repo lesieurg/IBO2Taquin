@@ -5,10 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import grid.model.Grid;
+
 public class Position_SanityTests {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		Grid g = new Grid();
 	}
 
 	@Test

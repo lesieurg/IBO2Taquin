@@ -1,6 +1,11 @@
 package grid.model;
 
+import java.util.logging.Logger;
+
+
 public class Case{
+	
+	private static final Logger LOGGER = Logger.getLogger(Case.class.getName());
 	
 	private int key;
 	private Position pos;
@@ -8,12 +13,20 @@ public class Case{
 	public Case(int k, int a, int b) {
 		key = k;
 		pos = new Position(a, b);
+		LOGGER.info("Case instance created for key "+k+" in position ["+a+","+b+"]");
+	}
+	
+	public Case(int k, Position p){
+		key=k;
+		pos = new Position();
+		pos.equals(p);
+		LOGGER.info("Case instance created for key "+k+" with position " + p);
 	}
 	
 	public Case(Case case1) {
-		// TODO Auto-generated constructor stub
 		key = case1.getKey();
 		pos = case1.getPos();
+		LOGGER.info("Case instance created from case: " + case1);
 	}
 
 	public int getKey(){
@@ -34,7 +47,10 @@ public class Case{
 	}
 	
 	public Case getTop(Grid g){
+		LOGGER.info("call to getTop method for Case " + this);
 		if((pos.getX())<=0){
+			LOGGER.warning("TOP Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			LOGGER.info("null is returned");
 			return null;
 		}
 		else{
@@ -42,17 +58,11 @@ public class Case{
 		}
 	}
 	
-	public Case getTopRight(Grid g){
-		if((pos.getX())<=0 || (pos.getY())>=3){
-			return null;
-		}
-		else{
-			return g.getCaseByPos(pos.getTopRight());
-		}
-	}
-	
 	public Case getRight(Grid g){
+		LOGGER.info("call to getRight method for Case " + this);
 		if(pos.getY()>=3){
+			LOGGER.warning("RIGHT Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			LOGGER.info("null is returned");
 			return null;
 		}
 		else{
@@ -60,16 +70,11 @@ public class Case{
 		}
 	}
 	
-	public Case getBottomRight(Grid g){
-		if(pos.getX()>=3 || pos.getY()>=3){
-			return null;
-		}else{
-			return g.getCaseByPos(pos.getBottomRight());
-		}
-	}
-	
 	public Case getBottom(Grid g){
+		LOGGER.info("call to getBottom method for Case " + this);
 		if(pos.getX()>=3){
+			LOGGER.warning("BOTTOM Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			LOGGER.info("null is returned");
 			return null;
 		}
 		else{
@@ -77,63 +82,37 @@ public class Case{
 		}
 	}
 	
-	public Case getBottomLeft(Grid g){
-		if(pos.getX()>=3 || pos.getY()<=0){
-			return null;
-		}
-		else{
-			return g.getCaseByPos(pos.getBottomLeft());
-		}
-	}
-	
 	public Case getLeft(Grid g){
-		if(pos.getY()>=0){
+		LOGGER.info("call to getLeft method for Case " + this);
+		if(pos.getY()<=0){
+			LOGGER.warning("LEFT Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			LOGGER.info("null is returned");
 			return null;
 		}else{
 			return g.getCaseByPos(pos.getLeft());
 		}
 	}
-	
-	public Case getTopLeft(Grid g){
-		if(pos.getY()>=0 || pos.getX()<=0){
-			return null;
-		}else{
-			return g.getCaseByPos(pos.getTopLeft());
-		}
-	}
 		
 	public boolean isInGrid(){
+		LOGGER.info("call to isInGrid method for Case " + this);
 		return ((pos.getX() >= 0) && (pos.getX() < 4) && (pos.getY() >= 0) && (pos.getY() < 4));
 	}
 	
 	public boolean isMovable(Grid g){
-		return this.getTop(g).getKey()==0 || 
-				this.getTopRight(g).getKey()==0 || 
-				this.getRight(g).getKey()==0 || 
-				this.getBottomRight(g).getKey()==0 || 
-				this.getBottom(g).getKey()==0 || 
-				this.getBottomLeft(g).getKey()==0 || 
-				this.getLeft(g).getKey()==0 || 
-				this.getTopLeft(g).getKey()==0;
+		LOGGER.info("call to isMovable method for Case " + this);
+		return ((this.getTop(g)!=null && this.getTop(g).getKey()==0) || 
+				(this.getRight(g)!=null && this.getRight(g).getKey()==0) || 
+				(this.getBottom(g)!=null && this.getBottom(g).getKey()==0) || 
+				(this.getLeft(g)!=null && this.getLeft(g).getKey()==0)); 
 	}
 	
 	public String toString(){
 		return "CASE: key("+String.valueOf(key)+") " + pos.toString();
 	}
 	
-	public boolean equals(Case other){
-		if(other instanceof Case){
-			return (other.getKey()==key)&&(other.getPos()==pos);
-		}
-		else{
-			return false;
-		}
-	}
-	
-	public void permute(Case other){
-		Case tmp = new Case(this);
-		this.equals(other);
-		other.equals(tmp);
+	public void equals(Case other){
+		key = other.getKey();
+		pos.equals(other.getPos());
 	}
 
 }
