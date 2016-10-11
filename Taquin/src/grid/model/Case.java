@@ -13,20 +13,20 @@ public class Case{
 	public Case(int k, int a, int b) {
 		key = k;
 		pos = new Position(a, b);
-		LOGGER.info("Case instance created for key "+k+" in position ["+a+","+b+"]");
+		//LOGGER.info("Case instance created for key "+k+" in position ["+a+","+b+"]");
 	}
 	
 	public Case(int k, Position p){
 		key=k;
 		pos = new Position();
 		pos.equals(p);
-		LOGGER.info("Case instance created for key "+k+" with position " + p);
+		//LOGGER.info("Case instance created for key "+k+" with position " + p);
 	}
 	
 	public Case(Case case1) {
 		key = case1.getKey();
 		pos = case1.getPos();
-		LOGGER.info("Case instance created from case: " + case1);
+		//LOGGER.info("Case instance created from case: " + case1);
 	}
 
 	public int getKey(){
@@ -47,10 +47,10 @@ public class Case{
 	}
 	
 	public Case getTop(Grid g){
-		LOGGER.info("call to getTop method for Case " + this);
+		//LOGGER.info("call to getTop method for Case " + this);
 		if((pos.getX())<=0){
-			LOGGER.warning("TOP Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
-			LOGGER.info("null is returned");
+			//LOGGER.warning("TOP Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			//LOGGER.info("null is returned");
 			return null;
 		}
 		else{
@@ -59,10 +59,10 @@ public class Case{
 	}
 	
 	public Case getRight(Grid g){
-		LOGGER.info("call to getRight method for Case " + this);
+		//LOGGER.info("call to getRight method for Case " + this);
 		if(pos.getY()>=3){
-			LOGGER.warning("RIGHT Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
-			LOGGER.info("null is returned");
+			//LOGGER.warning("RIGHT Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			//LOGGER.info("null is returned");
 			return null;
 		}
 		else{
@@ -71,10 +71,10 @@ public class Case{
 	}
 	
 	public Case getBottom(Grid g){
-		LOGGER.info("call to getBottom method for Case " + this);
+		//LOGGER.info("call to getBottom method for Case " + this);
 		if(pos.getX()>=3){
-			LOGGER.warning("BOTTOM Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
-			LOGGER.info("null is returned");
+			//LOGGER.warning("BOTTOM Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			//LOGGER.info("null is returned");
 			return null;
 		}
 		else{
@@ -83,10 +83,10 @@ public class Case{
 	}
 	
 	public Case getLeft(Grid g){
-		LOGGER.info("call to getLeft method for Case " + this);
+		//LOGGER.info("call to getLeft method for Case " + this);
 		if(pos.getY()<=0){
-			LOGGER.warning("LEFT Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
-			LOGGER.info("null is returned");
+			//LOGGER.warning("LEFT Case doesn't exists (is out of Grid) for Case "+ this +" in Grid "+g);
+			//LOGGER.info("null is returned");
 			return null;
 		}else{
 			return g.getCaseByPos(pos.getLeft());
@@ -94,12 +94,12 @@ public class Case{
 	}
 		
 	public boolean isInGrid(){
-		LOGGER.info("call to isInGrid method for Case " + this);
+		//LOGGER.info("call to isInGrid method for Case " + this);
 		return ((pos.getX() >= 0) && (pos.getX() < 4) && (pos.getY() >= 0) && (pos.getY() < 4));
 	}
 	
 	public boolean isMovable(Grid g){
-		LOGGER.info("call to isMovable method for Case " + this);
+		//LOGGER.info("call to isMovable method for Case " + this);
 		return ((this.getTop(g)!=null && this.getTop(g).getKey()==0) || 
 				(this.getRight(g)!=null && this.getRight(g).getKey()==0) || 
 				(this.getBottom(g)!=null && this.getBottom(g).getKey()==0) || 

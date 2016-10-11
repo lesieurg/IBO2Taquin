@@ -19,7 +19,7 @@ public class Grid {
 	List<ArrayList<Case>> grid = new ArrayList<ArrayList<Case>>();
 	
 	public Grid(){
-		LOGGER.info("Grid instance under construction within Random generation...");
+		//LOGGER.info("Grid instance under construction within Random generation...");
 		List<Integer> tmplist = new ArrayList<Integer>();
 		int cpt = 0;
 		while(cpt<16){
@@ -39,7 +39,18 @@ public class Grid {
 				grid.get(i).add(new Case(tmplist.get(4*i+j),i,j));
 			}
 		}
-		LOGGER.info("Grid created: \n" + this);
+		//LOGGER.info("Grid created: \n" + this);
+	}
+	
+	public Grid(List<Integer> config){
+		//LOGGER.info("Grid instance under construction within given configuration...");
+		for (int i=0; i<4; i++){
+			grid.add(i, new ArrayList<Case>());
+			for (int j=0; j<4; j++){
+				grid.get(i).add(new Case(config.get(4*i+j),i,j));
+			}
+		}
+		//LOGGER.info("Grid created: \n" + this);
 	}
 	
 	public String toString(){
@@ -59,7 +70,7 @@ public class Grid {
 	}
 	
 	public Case getCaseByKey(int k){
-		LOGGER.info("getCaseByKey method...(Key: " + k + ")");
+		//LOGGER.info("getCaseByKey method...(Key: " + k + ")");
 		List<Case> l = grid.get(0);
 		return this.getCaseByKey(k, l, 0);
 	}
@@ -79,12 +90,12 @@ public class Grid {
 	}
 	
 	public Case getCaseByPos(Position k){
-		LOGGER.info("getCaseByPos method...(Position: " + k + ")");
+		//LOGGER.info("getCaseByPos method...(Position: " + k + ")");
 		return grid.get(k.getX()).get(k.getY());
 	}
 	
 	public void move(Case toMove){
-		LOGGER.info("call to permute method for Case " + this.getCaseByKey(0) + " with other Case " + toMove);
+		//LOGGER.info("call to permute method for Case " + this.getCaseByKey(0) + " with other Case " + toMove);
 		int key = toMove.getKey();
 		Position val = toMove.getPos();
 		Position zer = this.getCaseByKey(0).getPos();

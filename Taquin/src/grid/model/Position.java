@@ -36,22 +36,22 @@ public class Position {
 	}
 	
 	public Position getTop(){
-		LOGGER.info("call to Position.getTop()");
+		//LOGGER.info("call to Position.getTop()");
 		return (new Position(x-1,y));
 	}
 	
 	public Position getRight(){
-		LOGGER.info("call to Position.getRight()");
+		//LOGGER.info("call to Position.getRight()");
 		return (new Position(x,y+1));
 	}
 	
 	public Position getBottom(){
-		LOGGER.info("call to Position.getBottom()");
+		//LOGGER.info("call to Position.getBottom()");
 		return new Position(x+1,y);
 	}
 	
 	public Position getLeft(){
-		LOGGER.info("call to Position.getLeft()");
+		//LOGGER.info("call to Position.getLeft()");
 		return new Position(x,y-1);
 	}
 	
